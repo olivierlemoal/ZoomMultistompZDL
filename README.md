@@ -29,7 +29,8 @@ Zoom Effect Manager installs the effects. See the [installation guide](docs/INST
 * **Confirmed by a user:** **MS-50G (firmware 3.10)**: NAM captures (full
   rate and Eco) and CabIR work ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)).
   Patch Editor writes passed the opt-in write test on that pedal (save,
-  backup and restore worked); still experimental.
+  backup and restore worked); still experimental. Installing an effect over
+  USB (a new file plus its effect-list record, and replacing it) worked too.
 * **Compatible family, awaiting confirmation:** **MS-60B, G1on, G1Xon, B1on
   and B1Xon**. Custom effects and Patch Editor compatibility on these models
   is awaiting confirmation from users.
@@ -145,13 +146,13 @@ your patch library lives in your own browser).
   will tell you if you are on one of them. **Chrome 152 is currently broken** —
   a Web MIDI *input* regression means output works, no dump ever arrives, and no
   error is raised. `tools/midi_check.html` confirms it in isolation.
-* **Install effects without Effect Manager (MS-70CDR, new):** **Effects** in
+* **Install effects without Effect Manager (MS-70CDR and MS-50G, new):** **Effects** in
   the toolbar lists this project's effects with the version on your pedal,
   and installs, updates or removes them over USB. It never touches Zoom's own
   effects, checks names and effect IDs against everything on the pedal,
   reads back every write, and can back up all the pedal's files first.
-  Power-cycle the pedal after a change. Tested on firmware 2.10
-  ([how it works](docs/EFFECT-INSTALL-PROTOCOL.md)).
+  Power-cycle the pedal after a change. Tested on MS-70CDR firmware 2.10 and
+  MS-50G firmware 3.10 ([how it works](docs/EFFECT-INSTALL-PROTOCOL.md)).
 * **Close Zoom Effect Manager first** — it holds the MIDI port. "The pedal did
   not respond" is usually this.
 * Slots 1–3 respond to knob moves instantly. Slots 4–6 cannot be edited live by
