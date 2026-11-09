@@ -30,7 +30,8 @@ Zoom Effect Manager installs the effects. See the [installation guide](docs/INST
   rate and Eco) and CabIR work ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)).
   Patch Editor writes passed the opt-in write test on that pedal (save,
   backup and restore worked); still experimental. Installing an effect over
-  USB (a new file plus its effect-list record, and replacing it) worked too.
+  USB (a new file plus its effect-list record, and replacing it) worked too,
+  and Gooey's live meter screen runs there.
 * **Compatible family, awaiting confirmation:** **MS-60B, G1on, G1Xon, B1on
   and B1Xon**. Custom effects and Patch Editor compatibility on these models
   is awaiting confirmation from users.
@@ -277,7 +278,7 @@ Seventeen more effects, made by **Luca Matturro**
 included here under his MIT licence:
 [zoom-ms-zdl-effects-pack](https://github.com/matujuice/zoom-ms-zdl-effects-pack)
 at 826ebb9 (2026-11-08). Gooey and LOUDER are rebuilt with a live meter that
-also runs on the MS-50G 3.10
+also runs on the MS-50G 3.10 (Gooey's tested on a stock MS-50G)
 ([ms50g-meter](https://github.com/olivierlemoal/zoom-ms-zdl-effects-pack/tree/ms50g-meter));
 the other files are his. The tempo effects take their tempo from the pedal:
 the MIDI clock with [MIDISTOMP](https://github.com/matujuice/zoom-ms-midistomp),
