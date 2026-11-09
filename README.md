@@ -335,6 +335,7 @@ under his name. Screens below are his artwork, as the pedal shows it.
 | **Takeoff** | Risers and downlifters. |
 | **Gooey** | Mix bus compressor with a live meter. |
 | **GRDLOOP** | Bar-synced looper on the song grid. |
+| **GooeyMB** | Gooey in two bands, for bass: a Linkwitz-Riley crossover (60-400 Hz), threshold and ratio per band, fixed AUTO makeup with a -1 dBFS ceiling, and the live meter on the low band. Not in the Matujuice pack: [gooey-multiband](https://github.com/olivierlemoal/zoom-ms-zdl-effects-pack/tree/gooey-multiband), ID 947. Tested on a stock MS-50G 3.10. |
 
 Made for synths and drum machines as much as guitar. Their IDs are 480-481,
 485-497 and 501-502. SyncEQ (494) is gone from the pack; Takeoff now uses 494.

@@ -168,6 +168,8 @@ MATUJUICE = "Matujuice pack by Luca Matturro (MIT)"
 CREDITS = {name: MATUJUICE for name in ("Breather", "Choral", "DJFilter", "DirtBox", "DualShft", "DubSiren",
                                        "EuGate", "GRDELAY", "GRDLOOP", "Gooey", "LOUDER", "SGNL", "Scrub",
                                        "Sweep", "Takeoff", "Washout", "WaveFold")}
+# GooeyMB (Gooey in two bands), MIT: olivierlemoal/zoom-ms-zdl-effects-pack, branch gooey-multiband.
+CREDITS["GooeyMB"] = "GooeyMB, after Matujuice's Gooey (MIT)"
 
 
 def _private(paths):

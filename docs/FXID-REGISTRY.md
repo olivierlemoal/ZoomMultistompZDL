@@ -136,6 +136,7 @@ table, so keep one `gid` per row and only numbers, commas and ranges in the
 | 7 | 447, 448 | CtxWatch, EdgeWatch (probes) | themanro/ZoomMultistompZDL @ 71f4582, `src/hardware_probes/*/manifest.json` |
 | 8 | 480, 481, 485–497, 501, 502 | DualShft, LOUDER, DubSiren, Choral, WaveFold, EuGate, S.GN_L, Scrub, DirtBox, Washout, Breather, Takeoff (494, was SyncEQ), GRDELAY (was GridDly), Sweep, GRDLOOP, Gooey, DJFilter. 481 is an old Dissolve ID; 501 and 502 are NAMLite capture slots 18 and 19 | matujuice/zoom-ms-zdl-effects-pack @ 826ebb9, `dist/*.ZDL`, `src/custom/*/manifest_pedal.json`; bundled in this repo's `dist/` |
 | 8 | 498, 499 | DryPrb, TempoPrb (probes) | matujuice/zoom-ms-zdl-effects-pack @ 5d30e70, `src/probes/*/manifest_pedal.json` |
+| 8 | 947 | GooeyMB | olivierlemoal/zoom-ms-zdl-effects-pack @ gooey-multiband, `src/custom/gooeymb/manifest_pedal.json`; bundled in this repo's `dist/` |
 | 2 | 552, 554–556, 565–569 | IRDUAL4, MS1960VS, M1960VT1, M1960VT2, HYBRIDIR, MS1960, GJ_IR, TRUCAB, TRUCAB2 | Leemuzhko/Zoom-ZDL-FX @ 85a490f, `zdl/filter/**/*.ZDL` (same in release v0.3.1) |
 | 3 | 580, 581 | NAMPLEX, NAM5150 | Leemuzhko/Zoom-ZDL-FX @ 85a490f, `zdl/drive/nam/*/*.ZDL` |
 | 4 | 337–340, 351, 370 | ENGL, ENGL2, CABSIM, PLEXI, JCM800, PLEXI2 (modified stock amps) | Leemuzhko/Zoom-ZDL-FX @ 85a490f, `zdl/guitar-amp/modified-amps/*/*.ZDL` |
@@ -165,7 +166,8 @@ probes use some of 908–929. TapeEcho4 now takes 946.
 ## Next available fxid for a new release effect
 
 Checked 2026-10-29: **947 – 949** in gid 8 are unused by this repo and every
-collection above, in every gid. Elsewhere in 403–957 the space is used or
+collection above, in every gid; GooeyMB has taken 947 since, so **948 – 949**
+are left. Elsewhere in 403–957 the space is used or
 reserved by themanro's pack; agree an ID with that project before taking one
 from its reserved ranges.
 
