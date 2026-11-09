@@ -3070,8 +3070,9 @@ async function fsWrite(name,data){
     if(!await fsAsk(block,3000)||!await fsAsk([0x60,0x05,0])){await fsClose();throw new Error("The pedal stopped answering while writing "+name+".");}
   }
   await fsClose();
-  const back=await fsRead(name);
-  if(back.length!==data.length||back.some((b,i)=>b!==data[i]))throw new Error(name+" read back different from what was written.");
+  const same=b=>b.length===data.length&&b.every((x,i)=>x===data[i]);
+  // MS-50G: a read-back right after replacing a large file can return stale blocks; a later read is correct.
+  if(!same(await fsRead(name))){await sleep(1500);if(!same(await fsRead(name)))throw new Error(name+" read back different from what was written.");}
 }
 async function fsDelete(name){
   fsHeads.delete(name.toUpperCase());
