@@ -161,11 +161,13 @@ def check_dist_filenames() -> None:
 
 
 # Effects in dist/ made by others, shown under their maker in the Patch Editor.
-# Matujuice ZDL effects pack v1.5, MIT (dist/matujuice/LICENSE), unmodified
-# release files: github.com/matujuice/zoom-ms-zdl-effects-pack
-MATUJUICE = "Matujuice pack v1.5 by Luca Matturro (MIT)"
-CREDITS = {name: MATUJUICE for name in ("Breather", "Choral", "DirtBox", "DualShft", "DubSiren", "EuGate",
-                                       "GridDly", "SGNL", "Scrub", "Sweep", "SyncEQ", "WaveFold")}
+# Matujuice ZDL effects pack, MIT (dist/matujuice/LICENSE): github.com/matujuice/zoom-ms-zdl-effects-pack
+# at 826ebb9 (2026-11-08); Gooey and LOUDER rebuilt with the MS-50G meter
+# (olivierlemoal/zoom-ms-zdl-effects-pack, branch ms50g-meter).
+MATUJUICE = "Matujuice pack by Luca Matturro (MIT)"
+CREDITS = {name: MATUJUICE for name in ("Breather", "Choral", "DJFilter", "DirtBox", "DualShft", "DubSiren",
+                                       "EuGate", "GRDELAY", "GRDLOOP", "Gooey", "LOUDER", "SGNL", "Scrub",
+                                       "Sweep", "Takeoff", "Washout", "WaveFold")}
 
 
 def _private(paths):
@@ -282,7 +284,8 @@ def main() -> None:
                           label=label.replace('{}', '%d'))
         for e in db['custom']:
             slot = e['fxid'] - g['fxid_offset']
-            if e['gid'] == 8 and g['first'] <= slot <= g['last'] and not e.get(key):
+            # Credited effects keep their name: Matujuice's Gooey (501) and DJFilter (502) sit in this range.
+            if e['gid'] == 8 and g['first'] <= slot <= g['last'] and not e.get(key) and not e.get('credit'):
                 e.update(name=label.format(slot), **{key: slot})
     if gens:
         db['generated'] = gens
