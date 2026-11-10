@@ -29,7 +29,9 @@ Zoom Effect Manager installs the effects. See the [installation guide](docs/INST
 * **Confirmed by a user:** **MS-50G (firmware 3.10)**: NAM captures (full
   rate and Eco) and CabIR work ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)).
   Patch Editor writes passed the opt-in write test on that pedal (save,
-  backup and restore worked); still experimental.
+  backup and restore worked); still experimental. Installing an effect over
+  USB (a new file plus its effect-list record, and replacing it) worked too,
+  and Gooey's live meter screen runs there.
 * **Compatible family, awaiting confirmation:** **MS-60B, G1on, G1Xon, B1on
   and B1Xon**. Custom effects and Patch Editor compatibility on these models
   is awaiting confirmation from users.
@@ -145,13 +147,13 @@ your patch library lives in your own browser).
   will tell you if you are on one of them. **Chrome 152 is currently broken** —
   a Web MIDI *input* regression means output works, no dump ever arrives, and no
   error is raised. `tools/midi_check.html` confirms it in isolation.
-* **Install effects without Effect Manager (MS-70CDR, new):** **Effects** in
+* **Install effects without Effect Manager (MS-70CDR and MS-50G, new):** **Effects** in
   the toolbar lists this project's effects with the version on your pedal,
   and installs, updates or removes them over USB. It never touches Zoom's own
   effects, checks names and effect IDs against everything on the pedal,
   reads back every write, and can back up all the pedal's files first.
-  Power-cycle the pedal after a change. Tested on firmware 2.10
-  ([how it works](docs/EFFECT-INSTALL-PROTOCOL.md)).
+  Power-cycle the pedal after a change. Tested on MS-70CDR firmware 2.10 and
+  MS-50G firmware 3.10 ([how it works](docs/EFFECT-INSTALL-PROTOCOL.md)).
 * **Close Zoom Effect Manager first** — it holds the MIDI port. "The pedal did
   not respond" is usually this.
 * Slots 1–3 respond to knob moves instantly. Slots 4–6 cannot be edited live by
@@ -271,14 +273,16 @@ pedal actually shows.
 
 ## Matujuice effects pack (included)
 
-Twelve more effects, made by **Luca Matturro**
+Seventeen more effects, made by **Luca Matturro**
 ([matujuice](https://github.com/matujuice)) on this project's toolchain and
-included here unmodified under his MIT licence:
+included here under his MIT licence:
 [zoom-ms-zdl-effects-pack](https://github.com/matujuice/zoom-ms-zdl-effects-pack)
-release v1.5. The files in [dist/](dist/) match that release's checksums.
-v1.5 has its own Tempo knobs, so it runs on stock firmware; later releases
-(v1.6+) take their tempo from [MIDISTOMP](https://github.com/matujuice/zoom-ms-midistomp)
-and are on his page. His full guide and licence are in
+at 826ebb9 (2026-11-08). Gooey and LOUDER are rebuilt with a live meter that
+also runs on the MS-50G 3.10 (Gooey's tested on a stock MS-50G)
+([ms50g-meter](https://github.com/olivierlemoal/zoom-ms-zdl-effects-pack/tree/ms50g-meter));
+the other files are his. The tempo effects take their tempo from the pedal:
+the MIDI clock with [MIDISTOMP](https://github.com/matujuice/zoom-ms-midistomp),
+else tap or patch tempo. His full guide and licence are in
 [dist/matujuice/](dist/matujuice/README.md); in Patch Editor they are listed
 under his name. Screens below are his artwork, as the pedal shows it.
 
@@ -293,13 +297,22 @@ under his name. Screens below are his artwork, as the pedal shows it.
 <td align="center"><img src="graphics/dubsiren.png" width="220" alt="DubSiren"></td>
 <td align="center"><img src="graphics/sgnl.png" width="220" alt="SGNL"></td>
 <td align="center"><img src="graphics/scrub.png" width="220" alt="Scrub"></td>
-<td align="center"><img src="graphics/griddly.png" width="220" alt="GridDly"></td>
+<td align="center"><img src="graphics/grdelay.png" width="220" alt="GRDELAY"></td>
 </tr>
 <tr>
-<td align="center"><img src="graphics/synceq.png" width="220" alt="SyncEQ"></td>
 <td align="center"><img src="graphics/breather.png" width="220" alt="Breather"></td>
 <td align="center"><img src="graphics/dirtbox.png" width="220" alt="DirtBox"></td>
 <td align="center"><img src="graphics/sweep.png" width="220" alt="Sweep"></td>
+<td align="center"><img src="graphics/louder.png" width="220" alt="LOUDER"></td>
+</tr>
+<tr>
+<td align="center"><img src="graphics/djfilter.png" width="220" alt="DJFilter"></td>
+<td align="center"><img src="graphics/washout.png" width="220" alt="Washout"></td>
+<td align="center"><img src="graphics/takeoff.png" width="220" alt="Takeoff"></td>
+<td align="center"><img src="graphics/gooey.png" width="220" alt="Gooey"></td>
+</tr>
+<tr>
+<td align="center"><img src="graphics/grdloop.png" width="220" alt="GRDLOOP"></td>
 </tr>
 </table>
 
@@ -312,15 +325,23 @@ under his name. Screens below are his artwork, as the pedal shows it.
 | **DubSiren** | Dub siren with tape echo. |
 | **SGNL** | Broken digital line: glitches, dropouts, codec damage. |
 | **Scrub** | Scrub through the last seconds, freeze where you stop. |
-| **GridDly** | One tempo-synced delay with six engines. |
-| **SyncEQ** | EQ that passes the bar sync on to the effects after it. |
+| **GRDELAY** | One tempo-synced delay with six engines (was GridDly). |
 | **Breather** | Tempo-synced pump with a reverb. |
 | **DirtBox** | Distortion box for acid lines: seven classic pedal models, EQ, noise reducer. |
 | **Sweep** | Phaser, flanger and filter in one. |
+| **LOUDER** | Mastering limiter with a live meter. |
+| **DJFilter** | DJ filter and kick kill. |
+| **Washout** | A delay that melts into a cloud. |
+| **Takeoff** | Risers and downlifters. |
+| **Gooey** | Mix bus compressor with a live meter. |
+| **GRDLOOP** | Bar-synced looper on the song grid. |
 
-Made for synths and drum machines as much as guitar. Their IDs are 480 and
-485-496. If you installed a very early Howl build (ID 480), reinstall Howl from
-dist/ before adding DualShft.
+Made for synths and drum machines as much as guitar. Their IDs are 480-481,
+485-497 and 501-502. SyncEQ (494) is gone from the pack; Takeoff now uses 494.
+LOUDER uses 481, an old Dissolve ID, and Gooey and DJFilter use 501 and 502,
+inside the NAMLite capture range: keep NAM captures out of slots 18 and 19.
+If you installed a very early Howl build (ID 480), reinstall Howl from dist/
+before adding DualShft.
 
 ## A looper and live screens
 
@@ -707,7 +728,7 @@ them beside the repo, treat them as read-only references.
 |---|---|
 | [MS StompCtrl](https://github.com/1njected/ms-stompctrl) | Browser-only patch editor and backup tool for the **MS-100BT**, over Bluetooth in Chrome ([open it](https://1njected.github.io/ms-stompctrl/)). Reads, edits and writes patches, backs up the bank, and installs `.ZDL` files. A user has run four of this repo's effects on the MS-100BT ([#4](https://github.com/themanro/ZoomMultistompZDL/issues/4)); back up first and report what you find. MIT. |
 | [MIDISTOMP](https://github.com/matujuice/zoom-ms-midistomp) | Custom firmware for the original MultiStomps: MIDI Program Change, CC control of every knob, MIDI clock with Start/Stop, a tap-tempo screen and footswitch-hold options. Installed by flashing a modified Zoom updater (riskier than an Effect Manager install). Tested on an MS-60B running MS-50G 3.10; MS-50G and MS-70CDR untested. MIT. |
-| [Matujuice ZDL effects pack](https://github.com/matujuice/zoom-ms-zdl-effects-pack) | Luca Matturro's custom effects, built on this toolchain, made for synths and drum machines. v1.5 is [included here](#matujuice-effects-pack-included); v1.6 and later follow MIDISTOMP's tempo (120 BPM on stock firmware). MIT. |
+| [Matujuice ZDL effects pack](https://github.com/matujuice/zoom-ms-zdl-effects-pack) | Luca Matturro's custom effects, built on this toolchain, made for synths and drum machines. [Included here](#matujuice-effects-pack-included) at 826ebb9; the tempo effects follow MIDISTOMP's tempo, or tap and patch tempo on stock firmware. MIT. |
 | [repeat98/ZoomMultistompZDL](https://github.com/repeat98/ZoomMultistompZDL) | The upstream ZDL toolchain this fork started from. |
 | [nam2zoom](https://github.com/freelender/nam-to-zoom) | NAM captures on the **Plus** pedals (MS-50G+, MS-70CDR+; MS-60B+ experimental): one to ten captures in one "N2Z Bank" effect (Model, Bass, Mid, Treble, Vol, Input, Mix), on a smaller 14-layer network, with an optional cab IR. Windows app; macOS in preview. By Aleksandar Vukasinovic, MIT. |
 | [Leemuzhko/ZOOM_development](https://github.com/Leemuzhko/ZOOM_development) | Alexander Lim's SDK notes and hardware results for the MS-70CDR. Much here rests on them: how an effect draws its own screen (the live screens and the zvis kit), the pedal's file-size cap and DSP limit, and linker pitfalls. The repo has no licence, so its findings are used here with credit, not its code. |
@@ -743,8 +764,9 @@ Everything in this repository is MIT; see [LICENSE](LICENSE):
   effects): MIT, Jannik Assfalg.
 - **Airwindows DSP** in `src/airwindows/`: MIT, Chris Johnson/Airwindows,
   under its own terms.
-- **The Matujuice effects** in `dist/` (Breather, Choral, DirtBox, DualShft,
-  DubSiren, EuGate, GridDly, SGNL, Scrub, Sweep, SyncEQ, WaveFold) and the
+- **The Matujuice effects** in `dist/` (Breather, Choral, DirtBox, DJFilter,
+  DualShft, DubSiren, EuGate, GRDELAY, GRDLOOP, Gooey, LOUDER, SGNL, Scrub,
+  Sweep, Takeoff, Washout, WaveFold) and the
   renders of their screens in `graphics/` and the effects overview: MIT, Luca
   Matturro; his licence is in [dist/matujuice/LICENSE](dist/matujuice/LICENSE).
 

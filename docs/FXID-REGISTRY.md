@@ -134,7 +134,7 @@ table, so keep one `gid` per row and only numbers, commas and ranges in the
 | 3 | 454, 457 | Corrupt, Scorch (older builds) | themanro/ZoomMultistompZDL @ 71f4582, `src/custom/*/manifest.json` |
 | 6 | 451, 453, 455, 456 | Flower, Arrakis, Klang, GenLoss (older builds) | themanro/ZoomMultistompZDL @ 71f4582, `src/custom/*/manifest.json` |
 | 7 | 447, 448 | CtxWatch, EdgeWatch (probes) | themanro/ZoomMultistompZDL @ 71f4582, `src/hardware_probes/*/manifest.json` |
-| 8 | 480, 485–497 | DualShft, DubSiren, Choral, WaveFold, EuGate, S.GN_L, Scrub, DirtBox, (492 dropped effect), Breather, SyncEQ, GridDly, Sweep, Looper (MIDISTOMP 2.0) | matujuice/zoom-ms-zdl-effects-pack @ 5d30e70, `dist/*.ZDL`, release v1.5 `SyncEQ.ZDL`, `src/custom/*/manifest_pedal.json`; also bundled in themanro's `dist/` |
+| 8 | 480, 481, 485–497, 501, 502 | DualShft, LOUDER, DubSiren, Choral, WaveFold, EuGate, S.GN_L, Scrub, DirtBox, Washout, Breather, Takeoff (494, was SyncEQ), GRDELAY (was GridDly), Sweep, GRDLOOP, Gooey, DJFilter. 481 is an old Dissolve ID; 501 and 502 are NAMLite capture slots 18 and 19 | matujuice/zoom-ms-zdl-effects-pack @ 826ebb9, `dist/*.ZDL`, `src/custom/*/manifest_pedal.json`; bundled in this repo's `dist/` |
 | 8 | 498, 499 | DryPrb, TempoPrb (probes) | matujuice/zoom-ms-zdl-effects-pack @ 5d30e70, `src/probes/*/manifest_pedal.json` |
 | 2 | 552, 554–556, 565–569 | IRDUAL4, MS1960VS, M1960VT1, M1960VT2, HYBRIDIR, MS1960, GJ_IR, TRUCAB, TRUCAB2 | Leemuzhko/Zoom-ZDL-FX @ 85a490f, `zdl/filter/**/*.ZDL` (same in release v0.3.1) |
 | 3 | 580, 581 | NAMPLEX, NAM5150 | Leemuzhko/Zoom-ZDL-FX @ 85a490f, `zdl/drive/nam/*/*.ZDL` |

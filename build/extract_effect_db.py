@@ -161,11 +161,13 @@ def check_dist_filenames() -> None:
 
 
 # Effects in dist/ made by others, shown under their maker in the Patch Editor.
-# Matujuice ZDL effects pack v1.5, MIT (dist/matujuice/LICENSE), unmodified
-# release files: github.com/matujuice/zoom-ms-zdl-effects-pack
-MATUJUICE = "Matujuice pack v1.5 by Luca Matturro (MIT)"
-CREDITS = {name: MATUJUICE for name in ("Breather", "Choral", "DirtBox", "DualShft", "DubSiren", "EuGate",
-                                       "GridDly", "SGNL", "Scrub", "Sweep", "SyncEQ", "WaveFold")}
+# Matujuice ZDL effects pack, MIT (dist/matujuice/LICENSE): github.com/matujuice/zoom-ms-zdl-effects-pack
+# at 826ebb9 (2026-11-08); Gooey and LOUDER rebuilt with the MS-50G meter
+# (olivierlemoal/zoom-ms-zdl-effects-pack, branch ms50g-meter).
+MATUJUICE = "Matujuice pack by Luca Matturro (MIT)"
+CREDITS = {name: MATUJUICE for name in ("Breather", "Choral", "DJFilter", "DirtBox", "DualShft", "DubSiren",
+                                       "EuGate", "GRDELAY", "GRDLOOP", "Gooey", "LOUDER", "SGNL", "Scrub",
+                                       "Sweep", "Takeoff", "Washout", "WaveFold")}
 
 
 def _private(paths):
@@ -223,6 +225,11 @@ def main() -> None:
         db["stock"] = json.loads(current.read_text())["stock"] if current.exists() else []
         print(f"stock_zdls/ is not here (docs/STOCK-FILES.md): kept the {len(db['stock'])} stock "
               "entries from tools/effects_db.json")
+    # Probes are build outputs (build/probes/, not committed): keep the current entries without them.
+    if not any((ROOT / "build" / "probes").rglob("*.ZDL")):
+        current = ROOT / "tools" / "effects_db.json"
+        db["probes"] = json.loads(current.read_text()).get("probes", []) if current.exists() else []
+        print(f"build/probes/ is not here: kept the {len(db['probes'])} probe entries from tools/effects_db.json")
 
     # Reserved self-service NAM identities; templates contain no capture data.
     nam_slots = json.loads((ROOT / 'tools' / 'nam_template' / 'multi.json').read_text())['slots']
@@ -277,7 +284,8 @@ def main() -> None:
                           label=label.replace('{}', '%d'))
         for e in db['custom']:
             slot = e['fxid'] - g['fxid_offset']
-            if e['gid'] == 8 and g['first'] <= slot <= g['last'] and not e.get(key):
+            # Credited effects keep their name: Matujuice's Gooey (501) and DJFilter (502) sit in this range.
+            if e['gid'] == 8 and g['first'] <= slot <= g['last'] and not e.get(key) and not e.get('credit'):
                 e.update(name=label.format(slot), **{key: slot})
     if gens:
         db['generated'] = gens
