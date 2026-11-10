@@ -651,9 +651,9 @@
      "default": 9
     },
     {
-     "name": "Zoom",
-     "max": 15,
-     "default": 1
+     "name": "Level",
+     "max": 30,
+     "default": 24
     },
     {
      "name": "LoRat",
