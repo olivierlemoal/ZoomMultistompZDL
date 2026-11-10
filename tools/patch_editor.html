@@ -3143,7 +3143,8 @@ async function fsAllIds(){
 }
 function fsSay(text,warn){$("fxStatus").textContent=text;if(warn)banner(text);log("effects: "+text,warn?"warn":undefined);}
 function fsCanWrite(){
-  if((DEVID!==0x61&&DEVID!==0x58)||READ_ONLY)throw new Error("Installing is only enabled on the MS-70CDR and the MS-50G (the tested pedals). Reading and backing up work on any pedal.");
+  if(DEVID!==0x61&&DEVID!==0x58)throw new Error("Installing is only enabled on the MS-70CDR and the MS-50G (the tested pedals). Reading and backing up work on any pedal.");
+  if(READ_ONLY)throw new Error("Writes are off: click Enable writes first.");
 }
 async function fsLoadIndex(){
   if(fsIndex)return fsIndex;
