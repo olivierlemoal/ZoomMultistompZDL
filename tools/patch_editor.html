@@ -1083,6 +1083,9 @@ async function connect(){
     send([0xf0,0x7e,0x00,0x06,0x01,0xf7]);        // identity request (universal, safe)
     await sleep(40);
     await reread();                                // show the CURRENT patch immediately — silent
+    // MS-50G / MS-60B: the write test writes the current patch back unchanged (not stored) and
+    // unlocks writes only if every byte comes back; run it now so writes are on by default.
+    if(READ_ONLY&&SIBLING_MODELS[DEVID])await enableSiblingWrites({auto:true});
     // Do NOT auto-read the whole bank: the only way to read a stored patch is to
     // program-change to it, which makes the pedal AUDIBLY load+play each of the
     // 50 patches (the "cracking on connect"). Leave the full read to an explicit
@@ -1242,9 +1245,8 @@ function handleSysex(m){
       if(sibling){
         $("enableWrites").hidden=false;
         log(`pedal reports device ${id} (firmware ${fw}): ${sibling}. Its patch dumps match `
-           +`the MS-70CDR layout, so writes can be unlocked after a test. Read-only until then.`,"warn");
-        banner(`${sibling} detected — read-only for now. Back up your patches, then click `
-              +`“Enable writes (experimental)” to test this pedal and unlock editing.`);
+           +`the MS-70CDR layout, so writes are unlocked after a test (run on connect). Read-only until then.`,"warn");
+        banner(`${sibling} detected — testing writes on this pedal…`);
         updateActionState();
         return;
       }
@@ -1820,10 +1822,10 @@ function layoutProblems(p){
 // it cannot alter anything, and it shows whether the pedal takes a 146-byte
 // write at this layout without scrambling it. Writes unlock only on an exact
 // byte match.
-async function enableSiblingWrites(){
+async function enableSiblingWrites({auto=false}={}){
   const model=SIBLING_MODELS[DEVID];
   if(!model||!READ_ONLY||!midiOut)return;
-  if(!confirm(`Enable writes on this ${model}? (experimental)\n\n`
+  if(!auto&&!confirm(`Enable writes on this ${model}? (experimental)\n\n`
      +`This editor was mapped on an MS-70CDR. Your ${model}'s patches read the same way, but writing is untested.\n\n`
      +`Back up your patches first (Backup bank).\n\n`
      +`Test: the editor writes the current patch back to the pedal unchanged (not stored) and reads it again. `
@@ -1855,7 +1857,7 @@ async function enableSiblingWrites(){
     banner(`Write test did not pass (${e.message||e}). The pedal stays read-only. Please report it with Copy diag.`);
   }finally{busy=false;}
 }
-$("enableWrites").onclick=midiAction(enableSiblingWrites);
+$("enableWrites").onclick=midiAction(()=>enableSiblingWrites());
 // A sibling write the pedal didn't keep: stop writing and say so.
 function lockSiblingWrites(why){
   if(!WRITE_TRIAL)return;

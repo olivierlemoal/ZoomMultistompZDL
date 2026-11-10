@@ -28,8 +28,8 @@ Zoom Effect Manager installs the effects. See the [installation guide](docs/INST
 * **Tested:** original **MS-70CDR (firmware 2.10)**—custom effects and Patch Editor.
 * **Confirmed by a user:** **MS-50G (firmware 3.10)**: NAM captures (full
   rate and Eco) and CabIR work ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)).
-  Patch Editor writes passed the opt-in write test on that pedal (save,
-  backup and restore worked); still experimental. Installing an effect over
+  Patch Editor writes passed the write test on that pedal (save, backup and
+  restore worked; the test now runs on connect); still experimental. Installing an effect over
   USB (a new file plus its effect-list record, and replacing it) worked too,
   and Gooey's live meter screen runs there.
 * **Compatible family, awaiting confirmation:** **MS-60B, G1on, G1Xon, B1on
@@ -441,7 +441,7 @@ More detailed install notes live in [docs/INSTALLING-ZDLS.md](docs/INSTALLING-ZD
 | Device family | Status |
 |---|---|
 | Zoom MS-70CDR firmware 2.10 | Primary hardware target; the release effects are developed and play-tested against this pedal. |
-| Zoom MS-50G firmware 3.10 | NAM (full rate and Eco) and CabIR confirmed by a user ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)). Patch Editor writes passed the opt-in write test on that pedal; still experimental. Same DSP headroom as the MS-70CDR. |
+| Zoom MS-50G firmware 3.10 | NAM (full rate and Eco) and CabIR confirmed by a user ([#5](https://github.com/themanro/ZoomMultistompZDL/issues/5)). Patch Editor writes passed the write test on that pedal, which runs on connect; still experimental. Same DSP headroom as the MS-70CDR. |
 | Other ZDL-based Zoom pedals (MS-60B, G1on/G1Xon, B1on/B1Xon) | Compatible family, awaiting confirmation — hardware reports welcome. |
 | Zoom MS-100BT | Custom effects confirmed by a user, installed over Bluetooth with third-party tools ([#4](https://github.com/themanro/ZoomMultistompZDL/issues/4)). No USB MIDI, so no Effect Manager or Patch Editor. NAM/CabIR untested. |
 | Original G3/G3X, G5, B3 and A3 | Share the ZFX-IV DSP family, but this project's custom effects and Patch Editor are not currently supported or validated on them. |
