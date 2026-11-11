@@ -140,9 +140,9 @@
    "name": "GooeyMB",
    "gid": 8,
    "fxid": 947,
-   "version": "1.05",
-   "bytes": 31606,
-   "sha256": "d60f298630fc7aed00619a625573e80307df0d2d81d2c3fa5cc893e3701a7f15"
+   "version": "1.06",
+   "bytes": 31990,
+   "sha256": "8f4ed5f7147f21c737211d942a29feec6142c84c598ac46a2983b8d0666fe337"
   },
   {
    "file": "GRDELAY.ZDL",

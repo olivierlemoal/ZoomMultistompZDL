@@ -657,12 +657,12 @@
     },
     {
      "name": "LoRat",
-     "max": 3,
-     "default": 2
+     "max": 7,
+     "default": 4
     },
     {
      "name": "HiRat",
-     "max": 3,
+     "max": 7,
      "default": 1
     },
     {
