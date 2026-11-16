@@ -44,7 +44,8 @@ EXAMPLES = [("nam-example", "NAM", "smokey", "amp"), ("cab-example", "IR", "4x12
 
 # Luca Matturro's pack (dist/matujuice/), credited separately.
 MATUJUICE = ["WaveFold", "DualShft", "Choral", "EuGate", "DubSiren", "SGNL",
-             "Scrub", "GridDly", "SyncEQ", "Breather", "DirtBox", "Sweep"]
+             "Scrub", "GRDELAY", "Breather", "DirtBox", "Sweep", "LOUDER",
+             "DJFilter", "Washout", "Takeoff", "Gooey", "GRDLOOP"]
 
 
 def _guitar_like(path: Path, seconds: float = 8.0) -> Path:
